@@ -1,0 +1,82 @@
+ex1
+
+#include <stdio.h>
+int main(){
+    float a=3.2,*pa=NULL;
+    short b=9,*pb=NULL;
+    printf("Valeur de a =%f\nAdresse de a = %p\n",a,&a);
+    pa=&a;
+    printf("Valeur de pa =%p\nValeur de a : %f\n",pa,*pa);
+    ++(*pa);
+
+    printf("Valeur de b =%d\nAdresse de b = %p\n",b,&b);
+    pb=&b;
+    printf("Valeur de pb =%p\nValeur de b : %d\n",pb,*pb);
+    *pb+=2;
+    printf("Valeur de a : %f\n",*pa);
+    printf("Valeur de b : %d\n",*pb);
+return 0;}
+
+ex2
+
+#include <stdio.h>
+void changer1(short *a){
+ *a=*a+3;
+ }
+void changer2(short **pd){
+    **pd=10;
+}
+int main(){
+short x=3,*ps=&x,**pd=&ps;
+changer1(&x);
+printf("Valeur de x =%hi\n",x);
+/* la fonction changerl prend parametre comme valeur n'est pas par refirance*/
+/* en change a par a* et x par &x */
+changer2(pd);
+printf("Valeur de x =%hi\n",x);
+
+return 0;}
+
+tp3  
+
+#include <stdio.h>
+#include <stdlib.h>
+int main(){
+     float *ptr = NULL;
+     int size;
+     int i;
+     printf("Enter the size of the array (greater than 3): ");
+     scanf("%d", &size);
+     do {
+            scanf("size must be grater than 3",&size);
+     }while(size<3);
+
+      ptr = (float *)malloc(size * sizeof(float));
+
+     for(int i = 0; i <size;i++){
+        ptr[i] = 3.25 + ((float)rand() / RAND_MAX) * (7.91 - 3.25);
+     }
+
+     for(i = 0; i <size;i++){
+        printf("%f",ptr[i]);
+        printf("\n");
+     }
+
+     size = size +3;
+
+     ptr = (float *)realloc(ptr, size * sizeof(float));
+
+     for(i = size-3;i<size; i++){
+        ptr[i] = 3.25 + ((float)rand() / RAND_MAX) * (7.91 - 3.25);
+     }
+     printf("\n");
+     printf(" second table");
+     printf("\n");
+      for(i = 0; i <size;i++){
+        printf("%f",ptr[i]);
+        printf("\n");
+     }
+     free(ptr);
+
+return 0;
+}

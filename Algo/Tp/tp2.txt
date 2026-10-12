@@ -1,0 +1,126 @@
+ex2
+#include <stdio.h>
+#include <stdlib.h>
+
+    typedef struct {
+    char titre[30];
+    char auteur[20];
+    char date[20];
+    } Livre;
+    void saisirlivre(Livre *livre) {
+    printf("donner le titre\n");
+    scanf("%s",livre->titre);
+
+    printf("donner le nom de auteur\n");
+    scanf("%s",livre->auteur);
+
+    printf("donner le date\n");
+    scanf("%s",livre->date);
+    }
+     void infolivre(Livre *livre ){
+    printf("le titre de livre est %s\n",livre->titre);
+    printf("le nom de auteur est  %s\n",livre->auteur);
+    printf("le date est %s\n",livre->date);
+    }
+
+    void remplivres(Livre *livre,int n){
+    for(int i =0;i<n;i++){
+        saisirlivre(livre);
+    }
+    }
+    void afflivres(Livre *livre,int n){
+    for(int i =0;i<n;i++){
+        infolivre(livre);
+    }
+    }
+
+
+    int main( ){
+        Livre *l = NULL, int n = 2;
+        Livre *l = (Livre*)malloc(n * sizeof(Livre));
+        if (l == NULL) {
+                printf("Memory allocation failed\n");
+                return 1;}
+        remplivres(n,1);
+        afflivres(n,1);
+
+    return 0; }
+
+ex3
+
+#include <stdio.h>
+#include <stdlib.h>
+
+    typedef struct{
+        char nom[20];
+        int age[100];
+        char filiere[50];
+        float *note;
+
+    }etudiant;
+    etudiant* makeetudiant(){
+
+        etudiant *ptr = (etudiant*)malloc(5 * sizeof(etudiant));
+        return ptr;
+
+    }
+
+    etudiant* initetudiant(etudiant *ptr){
+        int i =0;
+        printf("donner le nom\n");
+        scanf("%s",ptr->nom);
+
+        printf("donner l'age\n");
+        scanf("%i",ptr->age);
+
+        printf("donner le filiere\n");
+        scanf("%s",ptr->filiere);
+
+        ptr->note = (float*)malloc(5 * sizeof(float));
+
+        printf("donner les 4 notes\n");/*supposons 4 notes*/
+
+        for(i;i<4;i++){
+            scanf("%f",&ptr->note[i]);
+        }
+
+        return ptr;
+    }
+
+    etudiant* viewetudiant(etudiant *ptr){
+
+       printf("le nom est : %s\n",ptr->nom);
+       printf("l'age est : %hd\n",ptr->age);
+       printf("le filiere est : %s\n",ptr->filiere);
+       printf("les note est : \n");
+       for(int i =0;i<4;i++){
+        printf("%.2f",ptr->note[i]);
+        printf("\n");
+       }
+
+       return ptr;
+
+
+    }
+
+    float moyene(etudiant *ptr){
+        float sum = 0.0;
+        for(int i =0;i<4;i++){
+            sum = sum+ ptr->note[i];
+       }
+       return sum/4.0;
+
+    }
+
+    int main(){
+        etudiant *ptr = NULL;
+        ptr = makeetudiant();
+        initetudiant(ptr);
+        viewetudiant(ptr);
+        printf("le moyene est :\n");
+        moyene(ptr);
+
+
+    return 0;
+    }/* question 5 ma3raftouch, 5dimneh fil cour eme me fhimtouch*/
+

@@ -1,0 +1,67 @@
+ex1
+#include <stdio.h>
+int main() {
+    int *ptr;
+    ptr = (int *)malloc(sizeof(int));
+    *ptr = 5;
+    if (ptr == NULL) {
+        printf("Memory allocation failed\n");
+        return 1;}
+
+    printf("La valeur pointée par ptr est : %d\n", *ptr);
+
+    free(ptr);
+    return 0;
+}
+ex2
+#include <stdio.h>
+int main() {
+     int x = 10;
+     int y = 20;
+     int *ptr1 = &x;
+     int *ptr2 = &y;
+     printf("La somme de x et y est : %d\n", *ptr1 + *ptr2);
+ return 0;
+}
+/* oui le code est correct*/
+/* ptr dans c, c'est le pointeur et l'adresse d'un variable, *ptr est le valeur de ce variable*/
+
+#include <stdio.h>
+int main() {
+     int x =1, *ptr = NULL;
+     ptr = &x;
+     printf("La valeur pointée par ptr est : %d\n", *ptr);
+     return 0;
+}
+/* 4 En  C, un pointeur NULL est un pointeur qui ne pointe vers aucune adresse. Il est utilise pour indiquer l'absence de reference valide*/
+/* 5 en utilise & avec un variable pour enregistrer l'adresse d'un variable dans generalement un pointeur*/
+ex3
+#include <stdio.h>
+
+int Max(int *t, int size) {
+    int max = *t;
+    for (int i = 1; i < size; i++) {
+        if (*(t + i) > max) {
+            max = *(t + i);
+        }
+    }
+    return max;
+}
+
+int main() {
+    int t[100];
+    int size;
+
+    printf("donner le taille: ");
+    scanf("%d", &size);
+
+    printf("donner les elements:\n");
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &t[i]);
+    }
+
+    int max = Max(t, size);
+    printf("le max est %d\n", max);
+
+    return 0;
+}
